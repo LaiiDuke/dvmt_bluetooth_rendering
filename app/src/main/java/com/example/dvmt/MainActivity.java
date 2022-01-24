@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     int REQUEST_ENABLE_BLUETOOTH=1;
 
-    private static final String APP_NAME = "BTChat";
+    private static final String APP_NAME = "MYAPP";
     private UUID MY_UUID;
 
     @Override
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        LineDataSet lineDataSet = new LineDataSet(entryList, "CHART");
+        LineDataSet lineDataSet = new LineDataSet(entryList, "Value: 0");
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineDataSet);
         LineData data = new LineData(dataSets);
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                         s = s.substring(s.indexOf("%") + 1, s.indexOf("$", 1));
                     }
                     entryList.add(new Entry(counting++, Float.parseFloat(s)));
-                    LineDataSet lineDataSet = new LineDataSet(entryList, "CHART");
+                    LineDataSet lineDataSet = new LineDataSet(entryList, "Value: " + Float.parseFloat(s));
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(lineDataSet);
                     LineData data = new LineData(dataSets);
