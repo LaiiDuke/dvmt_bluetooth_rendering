@@ -228,6 +228,9 @@ public class MainActivity extends AppCompatActivity {
                         s = "$dsdkjfhsdkj%" + random + "$";
                         s = s.substring(s.indexOf("%") + 1, s.indexOf("$", 1));
                     }
+                    if (entryList.size() > 50) {
+                        entryList.remove(0);
+                    }
                     entryList.add(new Entry(counting++, Float.parseFloat(s)));
                     LineDataSet lineDataSet = new LineDataSet(entryList, "Value: " + Float.parseFloat(s));
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
