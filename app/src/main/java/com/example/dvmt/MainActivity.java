@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     Button listen, listDevices;
     ListView listView;
     TextView status;
+    TextView mVal;
+    TextView aVal;
+    TextView timeVal;
 
     BluetoothAdapter bluetoothAdapter;
     BluetoothDevice[] btArray;
@@ -57,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
     SendReceive sendReceive;
 
     LineChart lineChart;
-
-    int counting = 0;
 
     ArrayList<Entry> entryList = new ArrayList<>();
 
@@ -216,23 +217,62 @@ public class MainActivity extends AppCompatActivity {
                     //todo
                     Log.d(TAG, "handleMessage: " + tempMsg);
                     //todo
-
-                    String s;
+//                    tempMsg = "*setup%50*";
+                    //        tempMsg = "*value%51.0#6.78#24.3*";
+                    float a = 0;
                     try {
 
-                        s = tempMsg;
-                        s = s.substring(s.indexOf("%") + 1, s.indexOf("$", 1));
+
+                        if (tempMsg.contains("setup")) {
+
+                            String setupNum = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("*", tempMsg.indexOf("%")));
+                            entryList = new ArrayList<>();
+                            mVal.setText("m(g): " + setupNum);
+                            aVal.setText("a(m/s^2): ");
+                            timeVal.setText("time(ms): ");
+
+                        } else if (tempMsg.contains("value")) {
+
+                            String val1 = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("#"));
+                            int i = tempMsg.indexOf("#", tempMsg.indexOf(val1)) + 1;
+                            String val2 = tempMsg.substring(i, tempMsg.indexOf("#", i));
+                            int fromIndex = tempMsg.indexOf("#", tempMsg.indexOf(val2)) + 1;
+                            String val3 = tempMsg.substring(fromIndex, tempMsg.indexOf("*", fromIndex));
+
+                            a = Float.parseFloat(val1);
+                            aVal.setText("a(m/s^2): " + val3);
+                            timeVal.setText("time(ms): " + val2);
+                        }
 
                     } catch (Exception e) {
-                        float random = new Random().nextFloat();
-                        s = "$dsdkjfhsdkj%" + random + "$";
-                        s = s.substring(s.indexOf("%") + 1, s.indexOf("$", 1));
+                        tempMsg = "*setup%50*";
+                        tempMsg = "*value%50#678#243*";
+                        if (tempMsg.contains("setup")) {
+
+                            String setupNum = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("*", tempMsg.indexOf("%")));
+                            entryList = new ArrayList<>();
+                            mVal.setText("m(g): " + setupNum);
+                            aVal.setText("a(m/s^2): ");
+                            timeVal.setText("time(ms): ");
+
+                        } else if (tempMsg.contains("value")) {
+
+                            String val1 = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("#"));
+                            int i = tempMsg.indexOf("#", tempMsg.indexOf(val1)) + 1;
+                            String val2 = tempMsg.substring(i, tempMsg.indexOf("#", i));
+                            int fromIndex = tempMsg.indexOf("#", tempMsg.indexOf(val2)) + 1;
+                            String val3 = tempMsg.substring(fromIndex, tempMsg.indexOf("*", fromIndex));
+
+                            a = Float.parseFloat(val1);
+                            aVal.setText("a(m/s^2): " + val3);
+                            timeVal.setText("time(ms): " + val2);
+                        }
                     }
-                    if (entryList.size() > 50) {
-                        entryList.remove(0);
+                    if (entryList.size() == 128) {
+                        entryList = new ArrayList<>();
                     }
-                    entryList.add(new Entry(counting++, Float.parseFloat(s)));
-                    LineDataSet lineDataSet = new LineDataSet(entryList, "Value: " + Float.parseFloat(s));
+                    entryList.add(new Entry(entryList.size()+1, a));
+                    LineDataSet lineDataSet = new LineDataSet(entryList, "Value: " + a);
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(lineDataSet);
                     LineData data = new LineData(dataSets);
@@ -248,6 +288,9 @@ public class MainActivity extends AppCompatActivity {
         listen=(Button) findViewById(R.id.listen);
         listView=(ListView) findViewById(R.id.listview);
         status=(TextView) findViewById(R.id.status);
+        mVal =(TextView) findViewById(R.id.mVal);
+        aVal = (TextView) findViewById(R.id.aVal);
+        timeVal = (TextView) findViewById(R.id.timeVal);
         listDevices=(Button) findViewById(R.id.listDevices);
         lineChart=(LineChart) findViewById(R.id.line_chart);
     }

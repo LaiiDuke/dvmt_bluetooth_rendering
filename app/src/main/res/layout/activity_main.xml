@@ -37,7 +37,30 @@
 <!--        android:textColor="?android:attr/textColorLink"-->
 <!--        android:textSize="30sp"-->
 <!--        android:textStyle="italic" />-->
-
+    <TextView
+        android:id="@+id/mVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="m(g): "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/listview"/>
+    <TextView
+        android:id="@+id/aVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="a(m/s^2): "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/mVal"/>
+    <TextView
+        android:id="@+id/timeVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="time(ms): "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/aVal"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
