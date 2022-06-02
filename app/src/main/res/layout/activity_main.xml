@@ -38,29 +38,37 @@
 <!--        android:textSize="30sp"-->
 <!--        android:textStyle="italic" />-->
     <TextView
-        android:id="@+id/mVal"
+        android:id="@+id/nVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="m(g): "
+        android:text="N: "
         android:textSize="10sp"
         android:textStyle="italic"
         android:layout_below="@+id/listview"/>
     <TextView
+        android:id="@+id/bVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="B: "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/nVal"/>
+    <TextView
+        android:id="@+id/sVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="S: "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/bVal"/>
+    <TextView
         android:id="@+id/aVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="a(m/s^2): "
+        android:text="Alpha: "
         android:textSize="10sp"
         android:textStyle="italic"
-        android:layout_below="@+id/mVal"/>
-    <TextView
-        android:id="@+id/timeVal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="time(ms): "
-        android:textSize="10sp"
-        android:textStyle="italic"
-        android:layout_below="@+id/aVal"/>
+        android:layout_below="@+id/sVal"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"

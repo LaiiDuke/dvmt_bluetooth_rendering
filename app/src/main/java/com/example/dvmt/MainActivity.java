@@ -41,6 +41,7 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
@@ -50,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
     Button listen, listDevices;
     ListView listView;
     TextView status;
-    TextView mVal;
+    TextView nVal;
+    TextView bVal;
     TextView aVal;
-    TextView timeVal;
+    TextView sVal;
 
     BluetoothAdapter bluetoothAdapter;
     BluetoothDevice[] btArray;
@@ -217,62 +219,43 @@ public class MainActivity extends AppCompatActivity {
                     //todo
                     Log.d(TAG, "handleMessage: " + tempMsg);
                     //todo
-//                    tempMsg = "*setup%50*";
-                    //        tempMsg = "*value%51.0#6.78#24.3*";
-                    float a = 0;
+//                    tempMsg = "#10%11%12%13%50";
+                    float phi = 0;
                     try {
 
+                        String N = tempMsg.substring(tempMsg.indexOf("#") + 1, tempMsg.indexOf("%"));
+                        String temMsg = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.length());
+                        List<String> listData = Arrays.asList(temMsg.split("%"));
+                        String B = listData.get(0);
+                        String S = listData.get(1);
+                        String A = listData.get(2);
+                        phi = Float.parseFloat(listData.get(3));
 
-                        if (tempMsg.contains("setup")) {
-
-                            String setupNum = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("*", tempMsg.indexOf("%")));
-                            entryList = new ArrayList<>();
-                            mVal.setText("m(g): " + setupNum);
-                            aVal.setText("a(m/s^2): ");
-                            timeVal.setText("time(ms): ");
-
-                        } else if (tempMsg.contains("value")) {
-
-                            String val1 = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("#"));
-                            int i = tempMsg.indexOf("#", tempMsg.indexOf(val1)) + 1;
-                            String val2 = tempMsg.substring(i, tempMsg.indexOf("#", i));
-                            int fromIndex = tempMsg.indexOf("#", tempMsg.indexOf(val2)) + 1;
-                            String val3 = tempMsg.substring(fromIndex, tempMsg.indexOf("*", fromIndex));
-
-                            a = Float.parseFloat(val1);
-                            aVal.setText("a(m/s^2): " + val3);
-                            timeVal.setText("time(ms): " + val2);
-                        }
+                        aVal.setText("Alpha: " + A);
+                        nVal.setText("N: " + N);
+                        bVal.setText("B: " + B);
+                        sVal.setText("S: " + S);
 
                     } catch (Exception e) {
-                        tempMsg = "*setup%50*";
-                        tempMsg = "*value%50#678#243*";
-                        if (tempMsg.contains("setup")) {
+                        tempMsg = "#10%11%12%13%50";
+                        String N = tempMsg.substring(tempMsg.indexOf("#") + 1, tempMsg.indexOf("%"));
+                        String temMsg = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.length());
+                        List<String> listData = Arrays.asList(temMsg.split("%"));
+                        String B = listData.get(0);
+                        String S = listData.get(1);
+                        String A = listData.get(2);
+                        phi = Float.parseFloat(listData.get(3));
 
-                            String setupNum = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("*", tempMsg.indexOf("%")));
-                            entryList = new ArrayList<>();
-                            mVal.setText("m(g): " + setupNum);
-                            aVal.setText("a(m/s^2): ");
-                            timeVal.setText("time(ms): ");
-
-                        } else if (tempMsg.contains("value")) {
-
-                            String val1 = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.indexOf("#"));
-                            int i = tempMsg.indexOf("#", tempMsg.indexOf(val1)) + 1;
-                            String val2 = tempMsg.substring(i, tempMsg.indexOf("#", i));
-                            int fromIndex = tempMsg.indexOf("#", tempMsg.indexOf(val2)) + 1;
-                            String val3 = tempMsg.substring(fromIndex, tempMsg.indexOf("*", fromIndex));
-
-                            a = Float.parseFloat(val1);
-                            aVal.setText("a(m/s^2): " + val3);
-                            timeVal.setText("time(ms): " + val2);
-                        }
+                        aVal.setText("Alpha: " + A);
+                        nVal.setText("N: " + N);
+                        bVal.setText("B: " + B);
+                        sVal.setText("S: " + S);
                     }
-                    if (entryList.size() == 128) {
+                    if (entryList.size() == 50) {
                         entryList = new ArrayList<>();
                     }
-                    entryList.add(new Entry(entryList.size()+1, a));
-                    LineDataSet lineDataSet = new LineDataSet(entryList, "Value: " + a);
+                    entryList.add(new Entry(entryList.size()+1, phi));
+                    LineDataSet lineDataSet = new LineDataSet(entryList, "Value: " + phi);
                     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                     dataSets.add(lineDataSet);
                     LineData data = new LineData(dataSets);
@@ -288,9 +271,10 @@ public class MainActivity extends AppCompatActivity {
         listen=(Button) findViewById(R.id.listen);
         listView=(ListView) findViewById(R.id.listview);
         status=(TextView) findViewById(R.id.status);
-        mVal =(TextView) findViewById(R.id.mVal);
+        nVal =(TextView) findViewById(R.id.nVal);
+        bVal =(TextView) findViewById(R.id.bVal);
+        sVal =(TextView) findViewById(R.id.sVal);
         aVal = (TextView) findViewById(R.id.aVal);
-        timeVal = (TextView) findViewById(R.id.timeVal);
         listDevices=(Button) findViewById(R.id.listDevices);
         lineChart=(LineChart) findViewById(R.id.line_chart);
     }
