@@ -69,6 +69,14 @@
         android:textSize="10sp"
         android:textStyle="italic"
         android:layout_below="@+id/sVal"/>
+    <TextView
+        android:id="@+id/eVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delta E: "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/aVal"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
