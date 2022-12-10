@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     TextView bVal;
     TextView aVal;
     TextView eVal;
+    TextView tVal;
     TextView sVal;
 
     BluetoothAdapter bluetoothAdapter;
@@ -232,12 +233,14 @@ public class MainActivity extends AppCompatActivity {
                         String A = listData.get(2);
                         phi = Float.parseFloat(listData.get(3));
                         String E = listData.get(4);
+                        String T = listData.get(5);
 
                         aVal.setText("Alpha: " + A);
                         nVal.setText("N: " + N);
                         bVal.setText("B: " + B);
                         sVal.setText("S: " + S);
-                        eVal.setText("Delta E: " + E);
+                        eVal.setText("EC: " + E);
+                        tVal.setText("Delta t: " + T);
 
                     } catch (Exception e) {
                         tempMsg = "#10%11%12%13%50%30";
@@ -249,12 +252,14 @@ public class MainActivity extends AppCompatActivity {
                         String A = listData.get(2);
                         phi = Float.parseFloat(listData.get(3));
                         String E = listData.get(4);
+                        String T = listData.get(5);
 
                         aVal.setText("Alpha: " + A);
                         nVal.setText("N: " + N);
                         bVal.setText("B: " + B);
                         sVal.setText("S: " + S);
-                        eVal.setText("Delta E: " + E);
+                        eVal.setText("EC: " + E);
+                        tVal.setText("Delta t: " + T);
                     }
                     if (entryList.size() == 50) {
                         entryList = new ArrayList<>();
@@ -281,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
         sVal =(TextView) findViewById(R.id.sVal);
         aVal = (TextView) findViewById(R.id.aVal);
         eVal = (TextView) findViewById(R.id.eVal);
+        tVal = (TextView) findViewById(R.id.tVal);
         listDevices=(Button) findViewById(R.id.listDevices);
         lineChart=(LineChart) findViewById(R.id.line_chart);
     }
