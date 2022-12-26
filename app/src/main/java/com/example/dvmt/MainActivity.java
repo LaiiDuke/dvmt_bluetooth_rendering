@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     int REQUEST_ENABLE_BLUETOOTH=1;
 
     private static final String APP_NAME = "MYAPP";
+    private String msgGlb = "#10%11%12%13%50%30%34";
     private UUID MY_UUID;
 
     @Override
@@ -241,9 +242,10 @@ public class MainActivity extends AppCompatActivity {
                         sVal.setText("S: " + S);
                         eVal.setText("EC: " + E);
                         tVal.setText("Delta t: " + T);
+                        msgGlb = tempMsg;
 
                     } catch (Exception e) {
-                        tempMsg = "#10%11%12%13%50%30%34";
+                        tempMsg = msgGlb;
                         String N = tempMsg.substring(tempMsg.indexOf("#") + 1, tempMsg.indexOf("%"));
                         String temMsg = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.length());
                         List<String> listData = Arrays.asList(temMsg.split("%"));
