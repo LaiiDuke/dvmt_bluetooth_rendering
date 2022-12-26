@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                         tVal.setText("Delta t: " + T);
 
                     } catch (Exception e) {
-                        tempMsg = "#10%11%12%13%50%30";
+                        tempMsg = "#10%11%12%13%50%30%34";
                         String N = tempMsg.substring(tempMsg.indexOf("#") + 1, tempMsg.indexOf("%"));
                         String temMsg = tempMsg.substring(tempMsg.indexOf("%") + 1, tempMsg.length());
                         List<String> listData = Arrays.asList(temMsg.split("%"));

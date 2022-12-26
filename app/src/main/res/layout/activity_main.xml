@@ -84,7 +84,7 @@
         android:text="Delta t: "
         android:textSize="10sp"
         android:textStyle="italic"
-        android:layout_below="@+id/tVal"/>
+        android:layout_below="@+id/eVal"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
