@@ -85,6 +85,14 @@
         android:textSize="10sp"
         android:textStyle="italic"
         android:layout_below="@+id/eVal"/>
+    <TextView
+        android:id="@+id/phiVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delta phi: "
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/tVal"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"

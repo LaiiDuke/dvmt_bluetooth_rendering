@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     TextView aVal;
     TextView eVal;
     TextView tVal;
+    TextView phiVal;
     TextView sVal;
 
     BluetoothAdapter bluetoothAdapter;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     int REQUEST_ENABLE_BLUETOOTH=1;
 
     private static final String APP_NAME = "MYAPP";
-    private String msgGlb = "#10%11%12%13%50%30%34";
+    private String msgGlb = "#10%11%12%13%50%30%34%10";
     private UUID MY_UUID;
 
     @Override
@@ -235,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
                         phi = Float.parseFloat(listData.get(3));
                         String E = listData.get(4);
                         String T = listData.get(5);
+                        String Phi = listData.get(6);
 
                         aVal.setText("Alpha: " + A);
                         nVal.setText("N: " + N);
@@ -242,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
                         sVal.setText("S: " + S);
                         eVal.setText("EC: " + E);
                         tVal.setText("Delta t: " + T);
+                        phiVal.setText("Delta phi: " + Phi);
                         msgGlb = tempMsg;
 
                     } catch (Exception e) {
@@ -255,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
                         phi = Float.parseFloat(listData.get(3));
                         String E = listData.get(4);
                         String T = listData.get(5);
+                        String Phi = listData.get(6);
 
                         aVal.setText("Alpha: " + A);
                         nVal.setText("N: " + N);
@@ -262,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
                         sVal.setText("S: " + S);
                         eVal.setText("EC: " + E);
                         tVal.setText("Delta t: " + T);
+                        phiVal.setText("Delta phi: " + Phi);
                     }
                     if (entryList.size() == 50) {
                         entryList = new ArrayList<>();
@@ -289,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
         aVal = (TextView) findViewById(R.id.aVal);
         eVal = (TextView) findViewById(R.id.eVal);
         tVal = (TextView) findViewById(R.id.tVal);
+        phiVal = (TextView) findViewById(R.id.phiVal);
         listDevices=(Button) findViewById(R.id.listDevices);
         lineChart=(LineChart) findViewById(R.id.line_chart);
     }
